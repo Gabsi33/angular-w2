@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 interface Book {
   title: string;
-  description: string;
   authors: string[];
   rating: number;
   totalRating: number;
@@ -18,7 +17,6 @@ export class BookRatingComponent implements OnInit {
   books: Book[] = [
     {
       title: 'Великият Гетсби',
-      description: 'Роман за американския сън и обич',
       authors: ['Ф. Скот Фицджералд'],
       rating: 0,
       totalRating: 0,
@@ -26,7 +24,6 @@ export class BookRatingComponent implements OnInit {
     },
     {
       title: 'Тютюн',
-      description: 'Драма за тютюневата индустрия',
       authors: ['Димитър Димов'],
       rating: 0,
       totalRating: 0,
@@ -34,7 +31,6 @@ export class BookRatingComponent implements OnInit {
     },
     {
       title: 'Шогун',
-      description: 'Епичен роман за Япония през 17 век',
       authors: ['Джеймс Клавел'],
       rating: 0,
       totalRating: 0,
@@ -42,7 +38,6 @@ export class BookRatingComponent implements OnInit {
     },
     {
       title: 'Човекът в търсене на смисъл',
-      description: 'Личен разказ за преживяванията в концлагерите',
       authors: ['Виктор Франкъл'],
       rating: 0,
       totalRating: 0,
@@ -50,7 +45,6 @@ export class BookRatingComponent implements OnInit {
     },
     {
       title: 'Империя на омразата',
-      description: 'Трилър за мощ и контрол',
       authors: ['Рина Кент'],
       rating: 0,
       totalRating: 0,
