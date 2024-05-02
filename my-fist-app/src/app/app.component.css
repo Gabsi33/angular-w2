@@ -1,0 +1,25 @@
+.rating {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  
+  .rating label {
+    margin: 0 5px;
+  }
+  
+  .rating input[type="radio"] {
+    display: none;
+  }
+  
+  .rating label span {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 24px;
+  }
+  
+  button {
+    margin: 10px;
+    padding: 5px 15px;
+    font-size: 16px;
+  }
