@@ -1,29 +1,98 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { Component, OnInit } from '@angular/core';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AppComponent],
-    }).compileComponents();
-  });
+interface Book {
+  title: string;
+  description: string;
+  authors: string[];
+  rating: number;
+  totalRating: number;
+  numberOfRatings: number;
+}
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class BookRatingComponent implements OnInit {
+  books: Book[] = [
+    {
+      title: 'Великият Гетсби',
+      description: 'Роман за американския сън и обич',
+      authors: ['Ф. Скот Фицджералд'],
+      rating: 0,
+      totalRating: 0,
+      numberOfRatings: 0
+    },
+    {
+      title: 'Тютюн',
+      description: 'Драма за тютюневата индустрия',
+      authors: ['Димитър Димов'],
+      rating: 0,
+      totalRating: 0,
+      numberOfRatings: 0
+    },
+    {
+      title: 'Шогун',
+      description: 'Епичен роман за Япония през 17 век',
+      authors: ['Джеймс Клавел'],
+      rating: 0,
+      totalRating: 0,
+      numberOfRatings: 0
+    },
+    {
+      title: 'Човекът в търсене на смисъл',
+      description: 'Личен разказ за преживяванията в концлагерите',
+      authors: ['Виктор Франкъл'],
+      rating: 0,
+      totalRating: 0,
+      numberOfRatings: 0
+    },
+    {
+      title: 'Империя на омразата',
+      description: 'Трилър за мощ и контрол',
+      authors: ['Рина Кент'],
+      rating: 0,
+      totalRating: 0,
+      numberOfRatings: 0
+    }
+  ];
+  currentBookIndex: number = 0;
+  currentBook: Book | null = null;
 
-  it(`should have the 'my-fist-app' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('my-fist-app');
-  });
+  ngOnInit() {
+    this.currentBook = this.books[this.currentBookIndex];
+  }
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, my-fist-app');
-  });
-});
+  calculateAverageRating(book: Book): number {
+    return book.numberOfRatings ? book.totalRating / book.numberOfRatings : 0;
+  }
+
+  rateBook(rating: number): void {
+    if (this.currentBook) {
+      this.currentBook.totalRating += rating;
+      this.currentBook.numberOfRatings++;
+      this.currentBook.rating = this.calculateAverageRating(this.currentBook);
+      this.nextBook();
+    }
+  }
+
+  nextBook(): void {
+    if (this.currentBookIndex < this.books.length - 1) {
+      this.currentBookIndex++;
+    } else {
+      this.currentBookIndex = 0;
+    }
+    this.currentBook = this.books[this.currentBookIndex];
+  }
+
+  startOver(): void {
+    this.currentBookIndex = 0;
+    this.currentBook = this.books[this.currentBookIndex];
+  }
+
+  finishRating(): void {
+    this.currentBook = null;
+    alert('Работата е свършена успешно.');
+  }
+}

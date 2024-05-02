@@ -1,8 +1,8 @@
-<div *ngIf="BookRate">
-  <h2>{{ BookRate.title }}</h2>
-  <p>{{ BookRate.description }}</p>
-  <p><strong>Автори:</strong> {{ BookRate.authors.join(', ') }}</p>
-  <p><strong>Среден Рейтинг:</strong> {{ calculateAverageRating(BookRate) | number:'1.1-1' }}</p>
+<div *ngIf="currentBook">
+  <h2>{{ currentBook.title }}</h2>
+  <p>{{ currentBook.description }}</p>
+  <p><strong>Автори:</strong> {{ currentBook.authors.join(', ') }}</p>
+  <p><strong>Среден Рейтинг:</strong> {{ calculateAverageRating(currentBook) | number:'1.1-1' }}</p>
   <div class="rating">
     <label *ngFor="let star of [1, 2, 3, 4, 5]">
       <input type="radio" name="rating" (click)="rateBook(star)" [value]="star"/>
@@ -11,7 +11,7 @@
   </div>
   <button (click)="nextBook()">Следваща книга</button>
 </div>
-<div *ngIf="!BookRate">
+<div *ngIf="!currentBook">
   <button (click)="startOver()">Начало</button>
   <button (click)="finishRating()">Край</button>
 </div>
